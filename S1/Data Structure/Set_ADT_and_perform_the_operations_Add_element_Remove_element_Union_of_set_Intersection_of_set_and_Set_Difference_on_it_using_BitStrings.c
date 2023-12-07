@@ -39,7 +39,8 @@ void setunion()
   }
   printf("}");
 }
-void intersect() {
+void intersect() 
+{
   int i;
   printf("\nIntersection : {");
   for (i = 0; i < n; i++) 
@@ -60,7 +61,8 @@ void setdiff()
   }
   printf("}");
 }
-void main() {
+void main() 
+{
   int i, p, x;
   printf("Enter size of universal set : ");
   scanf("%d", & n);
@@ -72,7 +74,7 @@ void main() {
   }
   printf("\nEnter size of set 1 : ");
   scanf("%d", & p);
-  printf("\nEnter elements : ");
+  printf("Enter elements : ");
   for (i = 0; i < p; i++) 
   {
     scanf("%d", & x);
@@ -81,12 +83,12 @@ void main() {
   }
   printf("\nEnter size of set 2 : ");
   scanf("%d", & p);
-  printf("\nEnter elements : ");
+  printf("Enter elements : ");
   for (i = 0; i < p; i++) 
   {
     scanf("%d", & x);
     if (pos(x) != -1)
-      [pos(x)] = 1;
+      b[pos(x)] = 1;
   }
   printf("\nUniversal set : ");
   display(u);
