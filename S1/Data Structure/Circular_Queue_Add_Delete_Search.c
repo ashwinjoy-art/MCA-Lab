@@ -33,8 +33,6 @@ int c,queue[MAX],item,front=-1,rear=-1,i,n,flag=0;
 		}
 	}while(c!=5);
 }
-
-
 void enqueue()
 {
 	if((rear+1)%MAX==front){
