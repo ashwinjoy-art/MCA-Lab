@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int superSet[20],superSetSize=0,setA[20],setASize=0,
+int superSet[20],superSetSize=0,
+setA[20],setASize=0,
 setB[20],setBSize=0,
 bitStringA[20],bitStringB[20],bitStringUnion[20],bitStringIntersection[20],bitStringDifference[20];
 int isBitStringReady=0;
-//method declarations 
 void getSet(int arr[],int setSize);
 void processChoice(int choice);
 void printAllSets();
@@ -24,8 +24,7 @@ int checkBitStringStatus();
 int main(){    
     int choice=0;
     system("cls");
-    do
-    {
+    do{
         printf("\n============================\n");
         printf("1.Enter Universal Set\n");
         printf("2.Enter Set A\n");
@@ -41,14 +40,12 @@ int main(){
         scanf("%d",&choice);
         printf("============================\n");
         processChoice(choice);
-    }
-    while(choice!=9);
+    }while(choice!=9);
     return 0;
 }
-void processChoice(int choice)
-{
-    switch(choice)
-    {
+
+void processChoice(int choice){
+    switch(choice){
         case 1:
             printf("Enter Super Set Size:");
             scanf("%d",&superSetSize);
@@ -97,24 +94,21 @@ void processChoice(int choice)
              break;
     }
 }
-void printSetOperationResult(int arr[])
-{    
+
+void printSetOperationResult(int arr[]){    
     printf("\nUnion Operation (bit string):");
     printSet(arr,superSetSize);
     printf("\nOperation Result:");
     printBitStringAsSet(arr);
 }
-void printBitStringAsSet(int arr[])
-{
+
+void printBitStringAsSet(int arr[]){
     int isFirstOutputDoneFlag=0;
     int i=0;
     printf("{");
-    for( i=0;i<superSetSize;i++)
-    {
-        if(arr[i]==1)
-        {
-            if(i!=0 && isFirstOutputDoneFlag==1)
-            {
+    for( i=0;i<superSetSize;i++){
+        if(arr[i]==1){
+            if(i!=0 && isFirstOutputDoneFlag==1){
                 printf(",");
             }
             printf("%d",superSet[i]);
@@ -123,50 +117,42 @@ void printBitStringAsSet(int arr[])
     }
     printf("}");
 }
-void setUnion(int arr1[],int arr2[])
-{
-	int i;
+void setUnion(int arr1[],int arr2[]){
+    int i;
     for(i=0;i<superSetSize;i++){        
         bitStringUnion[i]=arr1[i]|arr2[i];
     }
 }
-void setIntersection(int arr1[],int arr2[])
-{
-	int i;
+void setIntersection(int arr1[],int arr2[]){
+    int i;
     for(i=0;i<superSetSize;i++){        
         bitStringIntersection[i]=arr1[i]&arr2[i];
     }
 }
-void setDifference(int arr1[],int arr2[])
-{
-	int i;
-    for(i=0;i<superSetSize;i++)
-    { 
+void setDifference(int arr1[],int arr2[]){
+    int i;
+    for(i=0;i<superSetSize;i++){ 
         printf("%d",!arr2[i]) ;     
         bitStringDifference[i]=arr1[i]&(!arr2[i]);
     }
 }
-int checkBitStringStatus()
-{
-    if(isBitStringReady==0)
-    {
+int checkBitStringStatus(){
+    if(isBitStringReady==0){
         printf("\n Generate Bit String first!");
         return 0;
     }
     return 1;
 }
-void getSet(int arr[],int setSize)
-{
-	int i;
+void getSet(int arr[],int setSize){
+    int i;
     printf("\nEnter set\n");
-    for(i=0;i<setSize;i++)
-    {
+    for(i=0;i<setSize;i++){
         scanf("%d",&arr[i]);
     }
 }
 
-void printAllSets()
-{   
+void printAllSets(){   
+
     printf("\nSuper Set:");
     printSet(superSet,superSetSize);
     printf("Set A:");
@@ -175,12 +161,10 @@ void printAllSets()
     printSet(setB,setBSize);
 }
 
-void printSet(int arr[],int size)
-{
-	int i;
+void printSet(int arr[],int size){
+    int i;
     printf("{");
-    for(i=0;i<size;i++)
-    {
+    for(i=0;i<size;i++){
         printf("%d",arr[i]);
         if(i!=size-1){
             printf(",");
@@ -188,11 +172,10 @@ void printSet(int arr[],int size)
     }
     printf("}\n");
 }
-void generateAndPrintBitStrings()
-{
-	int i;
-    for(i=0;i<superSetSize;i++)
-    {
+
+void generateAndPrintBitStrings(){
+    int i;
+    for(i=0;i<superSetSize;i++){
         bitStringA[i]=0;
         bitStringB[i]=0;
         bitStringUnion[i]=0;
@@ -210,23 +193,19 @@ void generateAndPrintBitStrings()
     printSet(bitStringB,superSetSize);
     isBitStringReady=1;
 }
-void generateBitString(int arr[],int size,int bitStringArray[])
-{
-	int i;
-    for(i=0;i<size;i++)
-    {
+
+void generateBitString(int arr[],int size,int bitStringArray[]){
+    int i;
+    for(i=0;i<size;i++){
         int pos=search(superSet,superSetSize,arr[i]);
-        if(pos>=0)
-        {
+        if(pos>=0){
             bitStringArray[pos]=1;
         }        
     }
 }
-int search(int arr[],int arrSize,int elem)
-{
-	int i;
-    for(i=0;i<arrSize;i++)
-    {
+int search(int arr[],int arrSize,int elem){
+    int i;
+    for(i=0;i<arrSize;i++){
         if(arr[i]==elem)
             return i;
     }

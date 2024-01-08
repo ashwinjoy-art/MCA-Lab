@@ -15,20 +15,21 @@ border:none;
 <td><button id="b1">Show/Hide Password</button></td>
 </tr>
 <tr><td colspan="2">Confirm Password : <form><input type="password" id="t3"></input></form></td></tr>
-<tr><td colspan="2">Email Id : <form><input type="text" id="t4" value="Egusername@mail.com"></input></form></td></tr>
+<tr><td colspan="2">Email Id : <form><input type="text" id="t4"></input></form></td></tr>
 <tr><td colspan="2">Address : <form><textarea rows="2" cols="10" id="t5"></textarea></form></td></tr>
 <tr><td><input type="button" value="Submit" id="b2"></td>
 <td><input type="reset" value="Clear All"></td></tr>
 </table>
 <script>
-function validation()
+function validation() 
 {
-if(document.getElementById("t1").value=="") alert("Enter your name");
-else if(document.getElementById("t2").value=="") alert("Enter your password");
-else if(document.getElementById("t3").value!=document.getElementById("t2").value) alert("Both passwords do not match!");
-else if(document.getElementById("t4").value=="") alert("Enter your Email Id");
-else if(document.getElementById("t5").value=="") alert("Enter your address");
-else alert("Form has been submitted")
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (document.getElementById("t1").value == "") alert("Enter your name");
+  else if (document.getElementById("t2").value == "") alert("Enter your password");
+  else if (document.getElementById("t3").value != document.getElementById("t2").value) alert("Both passwords do not match!");
+  else if (document.getElementById("t4").value == "" || !emailRegex.test(document.getElementById("t4").value)) alert("Enter a valid Email Id");
+  else if (document.getElementById("t5").value == "") alert("Enter your address");
+  else alert("Form has been submitted");
 }
 function reveal()
 {

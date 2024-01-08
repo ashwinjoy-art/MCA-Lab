@@ -1,106 +1,89 @@
-#include<stdio.h>
-int u[10], a[10], b[10], n;
-void display(int x[]) 
-{
-  int i;
-  printf("{");
-  for (i = 0; i < n; i++)
-    printf("%d,", x[i]);
-  printf("}");
+#include <stdio.h>
+void printSet(int set[], int size) {
+    printf("{ ");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", set[i]);
+    }
+    printf("}\n");
 }
-void bitdis(int x[]) 
-{
-  int i;
-  printf("{");
-  for (i = 0; i < n; i++) 
-  {
-    if (x[i] == 1)
-      printf("%d,", u[i]);
-  }
-  printf("}");
-}
-int pos(int x) {
-  int i, f = -1;
-  for (i = 0; i < n; i++) 
-  {
-    if (u[i] == x)
-      f = i;
-  }
-  return f;
-}
-void setunion() 
-{
-  int i;
-  printf("\nUnion : {");
-  for (i = 0; i < n; i++) 
-  {
-    if (a[i] | b[i] == 1)
-      printf("%d,", u[i]);
-  }
-  printf("}");
-}
-void intersect() 
-{
-  int i;
-  printf("\nIntersection : {");
-  for (i = 0; i < n; i++) 
-  {
-    if (a[i] & b[i] == 1)
-      printf("%d,", u[i]);
-  }
-  printf("}");
-}
-void setdiff() 
-{
-  int i;
-  printf("\nDifference : {");
-  for (i = 0; i < n; i++) 
-  {
-    if (a[i] & (!b[i]) == 1)
-      printf("%d,", u[i]);
-  }
-  printf("}");
-}
-void main() 
-{
-  int i, p, x;
-  printf("Enter size of universal set : ");
-  scanf("%d", & n);
-  printf("Enter elements : ");
-  for (i = 0; i < n; i++) 
-  {
-    scanf("%d", & u[i]);
-    a[i] = b[i] = 0;
-  }
-  printf("\nEnter size of set 1 : ");
-  scanf("%d", & p);
-  printf("Enter elements : ");
-  for (i = 0; i < p; i++) 
-  {
-    scanf("%d", & x);
-    if (pos(x) != -1)
-      a[pos(x)] = 1;
-  }
-  printf("\nEnter size of set 2 : ");
-  scanf("%d", & p);
-  printf("Enter elements : ");
-  for (i = 0; i < p; i++) 
-  {
-    scanf("%d", & x);
-    if (pos(x) != -1)
-      b[pos(x)] = 1;
-  }
-  printf("\nUniversal set : ");
-  display(u);
-  printf("\nSet 1 bit string : ");
-  display(a);
-  printf("\nSet 2 bit string : ");
-  display(b);
-  printf("\nSet 1 : ");
-  bitdis(a);
-  printf("\nSet 2 : ");
-  bitdis(b);
-  setunion();
-  intersect();
-  setdiff();
+int main() {
+    int maxSize = 100; 
+    int set1[maxSize], set2[maxSize];
+    int size1, size2;
+    printf("Enter the size of set1: ");
+    scanf("%d", &size1);
+    printf("Enter elements of set1 (space-separated): ");
+    for (int i = 0; i < size1; i++) {
+        scanf("%d", &set1[i]);
+    }
+    printf("Enter the size of set2: ");
+    scanf("%d", &size2);
+    printf("Enter elements of set2 (space-separated): ");
+    for (int i = 0; i < size2; i++) {
+        scanf("%d", &set2[i]);
+    }
+    int unionSet[maxSize];
+    int k = 0;
+    for (int i = 0; i < size1; i++) {
+        unionSet[k++] = set1[i];
+    }
+    for (int i = 0; i < size2; i++) {
+        int found = 0;
+        for (int j = 0; j < size1; j++) {
+            if (set2[i] == set1[j]) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            unionSet[k++] = set2[i];
+        }
+    }
+    printf("Union: ");
+    printSet(unionSet, k);
+    int intersectionSet[maxSize];
+    k = 0;
+    for (int i = 0; i < size1; i++) {
+        for (int j = 0; j < size2; j++) {
+            if (set1[i] == set2[j]) {
+                intersectionSet[k++] = set1[i];
+                break;
+            }
+        }
+    }
+    printf("Intersection: ");
+    printSet(intersectionSet, k);
+    int differenceSet1[maxSize];
+    int l = 0;
+    for (int i = 0; i < size1; i++) {
+        int found = 0;
+        for (int j = 0; j < size2; j++) {
+            if (set1[i] == set2[j]) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            differenceSet1[l++] = set1[i];
+        }
+    }
+    printf("Difference (set1 - set2): ");
+    printSet(differenceSet1, l);
+    int differenceSet2[maxSize];
+    l = 0;
+    for (int i = 0; i < size2; i++) {
+        int found = 0;
+        for (int j = 0; j < size1; j++) {
+            if (set2[i] == set1[j]) {
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            differenceSet2[l++] = set2[i];
+        }
+    }
+    printf("Difference (set2 - set1): ");
+    printSet(differenceSet2, l);
+    return 0;
 }

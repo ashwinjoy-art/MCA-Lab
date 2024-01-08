@@ -183,7 +183,7 @@ void search()
 	{
       if(link->data==data)
 	  {
-        printf("\\n\t\tThe number is found in the linked list!! %d and position is %d", link->data, count");
+        printf("\\n\t\tThe number is found in the linked list!! %d and position is %d", link->data, count);
         return;
       }
       count++;

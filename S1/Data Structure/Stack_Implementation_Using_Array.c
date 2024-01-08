@@ -2,11 +2,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #define MAX 100
-
 int stack[MAX];
 int top=-1;
 int max=100;
-
 bool isEmpty()
 {
 	if(top<=-1)
@@ -18,7 +16,6 @@ bool isEmpty()
 		return 0;
 	}
 }
-
 bool isFull()
 {
 	if(top>=max)
@@ -30,7 +27,6 @@ bool isFull()
 		return 0;	
 	}
 }
-
 void push()
 {
 	int value;
@@ -46,7 +42,6 @@ void push()
 		printf("\n%d pushed to stack",value);
 	}
 }
-
 void pop()
 {
 	if(isEmpty())
@@ -59,7 +54,6 @@ void pop()
 		top=top-1;
 	}
 }
-
 void display()
 {
 	int i;
@@ -75,7 +69,6 @@ void display()
 		printf("stack is empty");
 	}
 }
-
 void peek()
 {
 	if(!isEmpty())
@@ -87,7 +80,6 @@ void peek()
 		printf("stack is empty");
 	}
 }
-
 int main() 
 {
 	int opt;

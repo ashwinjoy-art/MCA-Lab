@@ -1,28 +1,23 @@
 #include <stdio.h>
 #include <stdbool.h>
 #define MAX 5
-
 int queue[MAX];
 int front = -1;
 int rear = -1;
-
-bool isFull() {
+bool isFull() 
+{
     return rear == MAX - 1;
 }
-
 bool isEmpty() {
     return front == -1 && rear == -1;
 }
-
 bool isEnd() {
     return isFull() && front == rear;
 }
-
 void reset() {
     front = -1;
     rear = -1;
 }
-
 void enqueue() {
     int value;
     printf("Enter the number: ");
@@ -39,7 +34,6 @@ void enqueue() {
         queue[rear] = value;
     }
 }
-
 void dequeue() {
     if (isEmpty()) {
         printf("Queue is empty\n");
@@ -48,7 +42,6 @@ void dequeue() {
         front++;
     }
 }
-
 void display() {
     if (isEmpty()) {
         printf("Queue is empty\n");
@@ -58,7 +51,6 @@ void display() {
         }
     }
 }
-
 int main() {
     int opt;
     do {
@@ -88,6 +80,5 @@ int main() {
                 printf("Invalid Option! Try Again...\n");
         }
     } while (opt != 0);
-
     return 0;
 }
