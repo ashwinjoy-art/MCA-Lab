@@ -1,0 +1,19 @@
+<html>
+<head>
+<body bgcolor="sky blue">
+<center>
+<img id="img1" onmouseover="setNew()" onmouseout="setOld()" src="first.jpg" width="300"/>
+<script>
+function setNew()
+{
+document.getElementById("img1").src="second.jpg";
+}
+function setOld()
+{
+document.getElementById("img1").src="first.jpg";
+}
+</script>
+</center>
+</body>
+</head>
+</html>
