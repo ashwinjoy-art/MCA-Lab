@@ -59,4 +59,9 @@ db.STUDENT.aggregate([
     }}
 ]);
 
-db.STUDENT.find({ "fname": { "$ne": "JAMES" } }).pretty();
+db.STUDENT.find({
+    "fname": {
+        "$ne": "JAMES"
+    }
+});
+

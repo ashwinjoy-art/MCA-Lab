@@ -1,49 +1,47 @@
-public class Cpu 
+public class CPU 
 {
-    int price;
-
-    class processor 
+    static class Processor 
     {
         int cores;
-        String producer;
+        String manufacturer;
 
-        processor(int noC, String manu) 
+        Processor(int cores, String manufacturer) 
         {
-            cores = noC;
-            producer = manu;
+            this.cores = cores;
+            this.manufacturer = manufacturer;
         }
 
         void display() {
             System.out.println("\nProcessor info");
             System.out.println("No. of Cores = " + cores);
-            System.out.println("Manufacturer = " + producer + "\n");
+            System.out.println("Manufacturer = " + manufacturer + "\n");
         }
     }
 
-    static class ram 
+    static class RAM 
     {
-        int mem;
-        String manuf;
+        int memory;
+        String manufacturer;
 
-        ram(int memory, String producer) 
+        RAM(int memory, String manufacturer) 
         {
-            mem = memory;
-            manuf = producer;
+            this.memory = memory;
+            this.manufacturer = manufacturer;
         }
 
-        void display() {
-            System.out.println("\nRAM info");
-            System.out.println("Memory = " + mem + " GB");
-            System.out.println("Manufacturer = " + manuf + "\n");
-        }
+void display()
+{
+System.out.println("\nRAM info");
+System.out.println("Memory = " + memory + " GB");
+System.out.println("Manufacturer = " + manufacturer + "\n");
+}
     }
 
     public static void main(String[] args) 
     {
-        Cpu.ram obj1 = new Cpu.ram(8, "Intel");
-        Cpu obj2 = new Cpu();
-        Cpu.processor obj3 = obj2.new processor(8, "Samsung");
-        obj1.display();
-        obj3.display();
+        RAM ram = new RAM(8, "Intel");
+        Processor processor = new Processor(8, "Samsung");
+        ram.display();
+        processor.display();
     }
 }

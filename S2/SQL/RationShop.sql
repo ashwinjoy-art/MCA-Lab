@@ -15,6 +15,8 @@ INSERT INTO customer1 VALUES
     (4, 'Emily Davis', '321 Pine Road', '222-333-4444'),
     (5, 'Sarah Wilson','567 Maple Lane','777-888-9999');
 
+SELECT * FROM customer1;
+
 CREATE TABLE Product1
 (
     Product_ID INT PRIMARY KEY,
@@ -30,7 +32,6 @@ INSERT INTO Product1 VALUES
     (4,'Oil', 1, 12.99),
     (5,'Grains', 1, 2.99);
 
-SELECT * FROM customer1;
 SELECT * FROM Product1;
 
 CREATE TABLE Stock
@@ -69,5 +70,8 @@ INSERT INTO Transaction VALUES
     (5, 5, 5, 2, 5.98, '2023-05-28');
 
 SELECT * FROM Transaction;
-SELECT Product_Name, Available_Quantity FROM Stock INNER JOIN Product1 ON Stock.Product_ID = Product1.Product_ID WHERE Product_Name = "Rice";
 
+SELECT Product_Name, Available_Quantity FROM Stock INNER JOIN Product1 ON Stock.Product_ID = Product1.Product_ID WHERE Product_Name = "Rice";
+INSERT INTO Transaction VALUES(6,1,1,5,250,'2023-05-24');
+SELECT Transaction_Id, Product_Name, Quantity, Total_Price, Transaction_Date from Transaction inner join Product1 on Transaction.Product_ID = 
+        Product1.Product_ID where Customer_ID=1;

@@ -9,9 +9,11 @@ public class Symmetric
         int row = sc.nextInt();
         System.out.println("Enter the Number of Columns of the Matrix");
         int col = sc.nextInt();
+
         int matrix[][] = new int[row][col];
         int i, j;
         boolean state = true;
+        
         for (i = 0; i < row; i++) 
         {
             for (j = 0; j < col; j++) 

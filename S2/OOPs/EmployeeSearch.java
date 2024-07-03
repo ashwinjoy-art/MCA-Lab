@@ -37,7 +37,9 @@ public class EmployeeSearch
         System.out.print("Enter the number of employees: ");
         int n = scanner.nextInt();
         Employee1[] employees = new Employee1[n];
-        for (int i = 0; i < n; i++) {
+
+        for (int i = 0; i < n; i++) 
+        {
             System.out.println("Enter details for employee " + (i + 1) + ":");
             System.out.print("Employee Number: ");
             int eNo = scanner.nextInt();

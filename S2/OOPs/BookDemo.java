@@ -2,23 +2,23 @@ import java.util.Scanner;
 
 class Publisher 
 {
-    String publisherName;
+    String name;
 
-    public Publisher(String publisherName) 
+    public Publisher(String name) 
     {
-        this.publisherName = publisherName;
+        this.name = name;
     }
 }
 
 class Book 
 {
-    String bookTitle;
+    String title;
     Publisher publisher;
     double price;
 
-    public Book(String bookTitle, Publisher publisher, double price) 
+    public Book(String title, Publisher publisher, double price) 
     {
-        this.bookTitle = bookTitle;
+        this.title = title;
         this.publisher = publisher;
         this.price = price;
     }
@@ -28,39 +28,21 @@ class Literature extends Book
 {
     String genre;
 
-    public Literature(String bookTitle, Publisher publisher, double price, String genre) 
+    public Literature(String title, Publisher publisher, double price, String genre) 
     {
-        super(bookTitle, publisher, price);
+        super(title, publisher, price);
         this.genre = genre;
-    }
-
-    public void display() 
-    {
-        System.out.println("Title: " + bookTitle);
-        System.out.println("Publisher: " + publisher.publisherName);
-        System.out.println("Price: $" + price);
-        System.out.println("Genre: " + genre);
-        System.out.println("-------------------------------------------");
     }
 }
 
 class Fiction extends Book 
 {
-    String genre;
+    String theme;
 
-    public Fiction(String bookTitle, Publisher publisher, double price, String genre) 
+    public Fiction(String title, Publisher publisher, double price, String theme) 
     {
-        super(bookTitle, publisher, price);
-        this.genre = genre;
-    }
-
-    public void display() 
-    {
-        System.out.println("Title: " + bookTitle);
-        System.out.println("Publisher: " + publisher.publisherName);
-        System.out.println("Price: $" + price);
-        System.out.println("Genre: " + genre);
-        System.out.println("-------------------------------------------");
+        super(title, publisher, price);
+        this.theme = theme;
     }
 }
 
@@ -69,31 +51,43 @@ public class BookDemo
     public static void main(String[] args) 
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Publisher Name: ");
-        String publisherName = scanner.nextLine();
-        Publisher publisher = new Publisher(publisherName);
-        System.out.println("Enter details for Literature Book:");
-        System.out.print("Title: ");
-        String literatureTitle = scanner.nextLine();
-        System.out.print("Price: ");
-        double literaturePrice = scanner.nextDouble();
-        scanner.nextLine();
-        System.out.print("Genre: ");
-        String literatureGenre = scanner.nextLine();
-        Literature literature = new Literature(literatureTitle, publisher, literaturePrice,literatureGenre);
-        System.out.println("Enter details for Fiction Book:");
-        System.out.print("Title: ");
-        String fictionTitle = scanner.nextLine();
-        System.out.print("Price: ");
-        double fictionPrice = scanner.nextDouble();
-        scanner.nextLine(); 
-        System.out.print("Genre: ");
-        String fictionGenre = scanner.nextLine();
-        Fiction fiction = new Fiction(fictionTitle, publisher, fictionPrice, fictionGenre);
-        System.out.println("\nDetails of Literature Book:");
-        literature.display();
-        System.out.println("Details of Fiction Book:");
-        fiction.display();
+        Publisher publisher1 = new Publisher("Publisher 1");
+        Publisher publisher2 = new Publisher("Publisher 2");
+        Book[] books = 
+        {
+                new Literature("Book 1", publisher1, 20.0, "Drama"),
+                new Literature("Book 2", publisher1, 25.0, "Poetry"),
+                new Fiction("Book 3", publisher2, 30.0, "Adventure"),
+                new Fiction("Book 4", publisher2, 35.0, "Mystery")
+        };
+
+        System.out.println("Books in Literature category:");
+        System.out.println("----------------------------");
+        for (Book book : books) 
+        {
+            if (book instanceof Literature) 
+            {
+                System.out.println("Title: " + book.title);
+                System.out.println("Publisher: " + book.publisher.name);
+                System.out.println("Price: $" + book.price);
+                System.out.println("Genre: " + ((Literature) book).genre);
+                System.out.println();
+            }
+        }
+        
+        System.out.println("Books in Fiction category:");
+        System.out.println("-------------------------");
+        for (Book book : books) 
+        {
+            if (book instanceof Fiction) 
+            {
+                System.out.println("Title: " + book.title);
+                System.out.println("Publisher: " + book.publisher.name);
+                System.out.println("Price: $" + book.price);
+                System.out.println("Theme: " + ((Fiction) book).theme);
+                System.out.println();
+            }
+        }
         scanner.close();
     }
 }

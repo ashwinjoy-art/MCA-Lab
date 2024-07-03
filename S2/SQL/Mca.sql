@@ -33,6 +33,44 @@ INSERT INTO Student_Mark VALUES
 
 SELECT * FROM Course;
 SELECT * FROM Student_Mark;
+
+-- Record
+UPDATE course SET Semester = 's4' WHERE Course_ID = 'bca3';
+UPDATE Student_Mark SET Student_Internal = 28 WHERE Reg_No = 'bt67f';
+-- Rename Course_name to Course_Name in Course Table:
+ALTER TABLE course CHANGE COLUMN Course_name Course_Name VARCHAR(20);
+-- add column Result in Student_Mark table:
+ALTER TABLE Student_Mark ADD Result VARCHAR(10);
+-- Drop column Result in Student_mark table:
+ALTER TABLE Student_Mark DROP COLUMN Result;
+-- Rename table Student_Mark as std_mark:
+RENAME TABLE Student_Mark TO std_mark;
+-- Delete data from std_mark table:
+TRUNCATE TABLE course;
+DROP TABLE course; 
+
+-- DCL Commands:
+-- GRANT and REVOKE commands to assign and revoke privilege.
+-- Grant privileges
+CREATE USER aysha IDENTIFIED BY '@123';
+GRANT SELECT, INSERT, UPDATE ON Employee TO aysha;
+-- Revoke privileges
+REVOKE INSERT ON Employee FROM aysha;
+
+-- EXP-6
+SELECT * FROM course;
+-- Retrieve all student who have score higher than average internal mark in a specific course:
+SELECT * FROM course WHERE Internal_mark > (SELECT AVG(Internal_mark) FROM course WHERE Course_ID = 'bca3');
+-- Retrieve all courses with credit greater than 3 and whose semester is either s2 or s4:
+SELECT * FROM course WHERE Credit > 4 AND Semester IN ('s2', 's4');
+-- Retrieve all student who are enrolled in a program with more than 100 students:
+SELECT * FROM course WHERE Course_ID IN (SELECT Course_ID FROM course WHERE Program_Id = 201);
+-- Retrieve all courses that are not taken by any student:
+SELECT * FROM course WHERE Credit > (SELECT AVG(Credit) FROM course);
+
+-- OLD Record
+SELECT * FROM Course;
+SELECT * FROM Student_Mark;
 UPDATE Course SET Course_Name = "Computer Science" WHERE Course_ID = 1;
 DELETE FROM Student_Mark WHERE Reg_No = 1002 AND Course_ID = 1;
 GRANT SELECT ON Course TO root;
@@ -68,11 +106,15 @@ SELECT COUNT(*) AS TotalCourses from Course;
 SELECT SUM(Credit) AS TotalCredit from Course;
 SELECT AVG(Student_Internal) AS AverageInternalMark from Student_Mark;
 SELECT MIN(Credit) AS MinimumCredit, MAX(Credit) AS MaximumCredit from Course;
+
+-- Group By:
+-- Calculate average internal mark and maximum external mark:
 SELECT Course_ID, AVG(Student_Internal) AS AvgInternalMark, MAX(Student_External) AS MaxExternalMark FROM Student_Mark GROUP BY Course_ID;
+-- Having:
 SELECT Course_ID, AVG(Student_Internal) AS AvgInternalMark, MAX(Student_External) AS MaxExternalMark FROM Student_Mark GROUP BY Course_ID having Course_ID = 1;
 
 CREATE VIEW CourseDetails AS SELECT Course.Course_ID, Course.Course_Name, Course.Credit, Student_Mark.Student_Internal, Student_Mark.Student_External 
-FROM Course INNER JOIN Student_Mark ON Course.Course_ID = Student_Mark.Course_ID;
+        FROM Course INNER JOIN Student_Mark ON Course.Course_ID = Student_Mark.Course_ID;
 SELECT * FROM CourseDetails;
 SELECT * FROM CourseDetails WHERE Course_ID = 1;
 SELECT Course_ID, AVG(Student_Internal) AS AvgInternalMark, AVG(Student_External) AS AvgInternalMark FROM CourseDetails GROUP BY Course_ID;
