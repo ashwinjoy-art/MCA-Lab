@@ -33,10 +33,12 @@ public class Symmetric
                 }
             }
         }
+        
         if (state) 
         {
             System.out.println("Matrix is Symmetric");
-        } else 
+        } 
+        else 
         {
             System.out.println("Matrix is Antisymmetric");
         }
