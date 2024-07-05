@@ -3,6 +3,7 @@ public class StringManipulation
     public static void main(String[] args) 
     {
         String str = "Hello, World!";
+        
         int length = str.length();
         System.out.println("Length: " + length);
 
@@ -23,7 +24,7 @@ public class StringManipulation
 
         boolean endsWith = str.endsWith("World!");
         System.out.println("Ends with 'World!': " + endsWith);
-        
+
         String trimmed = " Hello, World! ".trim();
         System.out.println("Trimmed: " + trimmed);
     }
