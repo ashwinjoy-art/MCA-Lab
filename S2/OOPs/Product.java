@@ -3,7 +3,6 @@ public class Product
     int pcode;
     String pname;
     double price;
-    double lowest;
 
     void data(int c, String n, double p) 
     {
