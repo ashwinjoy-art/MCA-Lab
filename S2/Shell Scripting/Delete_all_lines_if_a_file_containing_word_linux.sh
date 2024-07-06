@@ -1,9 +1,12 @@
 #!/usr/bin/bash
 
-echo "Enter the path of the file:"
+echo "Enter the filename:"
 read file
 
-grep -v "linux" "$file" > "$file.tmp"
-mv "$file.tmp" "$file"
+if [ -f "$file" ]; then
+    sed -i '/linux/d' "$file"
+    echo "Lines containing 'linux' removed from $file"
+else
+    echo "File not found."
+fi
 
-echo "Lines containing the word 'linux' have been deleted from '$file'."

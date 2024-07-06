@@ -1,10 +1,17 @@
 #!/usr/bin/bash
 
-echo "Enter source and destination file paths:"
-read source_file dest_file
+echo "Enter the source file path:"
+read source_file
+echo "Enter the destination file path:"
+read dest_file
 
 if [ ! -f "$source_file" ]; then
     echo "Error: Source file does not exist."
+    exit 1
+fi
+
+if [ -e "$dest_file" ]; then
+    echo "Error: Destination file '$dest_file' already exists."
     exit 1
 fi
 

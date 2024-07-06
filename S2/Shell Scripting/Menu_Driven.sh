@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
-while true; do
+while true; 
+do
     echo "Menu:"
     echo "a) All ordinary files"
     echo "b) All directory files"
