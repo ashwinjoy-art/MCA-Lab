@@ -23,7 +23,7 @@ class Teacher extends Employee
 
     public Teacher(int empId, String name, double salary, String address, String department,
             String subjectsTaught) 
-            {
+    {
         super(empId, name, salary, address);
         this.department = department;
         this.subjectsTaught = subjectsTaught;
@@ -49,7 +49,8 @@ public class TeacherDemo
         System.out.print("Enter the number of teachers (N): ");
         int N = scanner.nextInt();
         Teacher[] teachers = new Teacher[N];
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++) 
+        {
             System.out.println("Enter details for Teacher " + (i + 1) + ":");
             System.out.print("Employee ID: ");
             int empId = scanner.nextInt();
