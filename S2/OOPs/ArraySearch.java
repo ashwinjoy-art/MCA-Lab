@@ -26,7 +26,8 @@ public class ArraySearch
         if (index != -1) 
         {
             System.out.println("Element found at index " + index);
-        } else 
+        } 
+        else 
         {
             System.out.println("Element not found in the array");
         }
