@@ -1,9 +1,7 @@
 #!/usr/bin/bash
 
-echo "Enter the path of the first file:"
-read file1
-echo "Enter the path of the second file:"
-read file2
+echo "Enter the path of the files to check: "
+read file1 file2
 
 if cmp -s "$file1" "$file2"; then
     echo "Files are identical. Deleting one..."
