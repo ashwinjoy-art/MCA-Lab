@@ -1,5 +1,5 @@
 use Bookreview
-db.createCollection("user")
+db.createCollection("USER")
 db.USER.insertMany([
     {
         "u_id":101,
